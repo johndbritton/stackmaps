@@ -3,75 +3,43 @@
   <head>
     <title>Stackmaps</title>
 
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #container { height: 100%; width: 100% }​
-      #header { height: 20px; width: 100%; }
-      #map { height: 100%; }
-      #footer { height: 10px; width: 100%;}
-    </style>
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="lib/chosen/chosen.css" />
+
+    <link rel="stylesheet" href="lib/chosen/chosen.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&.js"></script>
+    <script type="text/javascript" src="lib/chosen/chosen.jquery.min.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var mapOptions = {
-          zoom: 2,
-          center: new google.maps.LatLng(42.37264, -71.109653),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map"), mapOptions); 
-      });
-
-      $.ajax({
-        url: 'http://api.stackexchange.com/2.0/sites',
-        type: 'GET',
-        data: '?pagesize=100',
-        success: function(data) {}
-      });
-
-      $.ajax({
-        url: 'http://api.stackexchange.com/2.0/users',
-        type: 'GET',
-        data: 'pagesize=10&order=desc&sort=reputation&site=travel', 
-        success: function(data) {
-          $.each(data.items, function(i, user) {
-            $.ajax({
-              url: 'http://where.yahooapis.com/geocode',
-              type: 'GET',
-              data: 'flags=j&q=' + user.location,
-              success: function(data) {
-	        var place = data.ResultSet.Results[0];
-                marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(place.latitude, place.longitude),
-                  map: map,
-                  title: user.display_name
-                });
-              }
-            });
-          });
-        }
-      });
-    </script>
-
+    <script type="text/javascript" src="js/stackmaps.js"></script>
   </head>
 
   <body>
     <div id="container">
       <div id="header">
-        <p>Stackmaps</p>
-        <select data-placeholder="Choose a StackExchange Community">
-          <option value=""></option>
-          <option value="Zimbabwe">Zimbabwe</option>
-        </select>
+        <img id="logo" src="img/logo.png" />
+        <div id="details">
+          <select id="sites" class="chzn-select" data-placeholder="Choose a StackExchange Site">
+            <option></option>
+          </select>
+        </div>
+        <div id="share">
+          <a href="https://twitter.com/johndbritton" class="twitter-follow-button" data-lang="en">@johndbritton</a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+        </div>
       </div>
+
       <div id="map"></div>
-      <div id="footer">
-        footer text
+
+      <div id="credits">
+          Created by <a style="color: rgb(68, 68, 68)" href="http://johndbritton.com">John Britton</a>
+          -
+          <a style="color: rgb(68, 68, 68); text-decoration: underline; cursor: pointer;" href="#" target="_blank">(more info)</a>
       </div>
     </div>
   </body>
-
 </html>

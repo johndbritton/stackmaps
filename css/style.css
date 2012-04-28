@@ -1,0 +1,30 @@
+body { margin: 0; padding: 0 }
+#header {  width: 100%; height: 61px; }
+#details {padding-top: 29px; float: left;}
+#logo { height: 61px; width: 250px; float: left; }
+#share { float: right; padding-top: 20px; }
+#sites { width: 250px; }
+#map {  width: 100%; }
+#credits {
+  position: absolute;
+  right: 0px;
+  bottom: 19px; 
+  height: 19px;
+  -webkit-user-select: none; 
+  line-height: 19px; 
+  padding-right: 2px; 
+  padding-left: 50px;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.496094) 50px);
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial; 
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: rgb(68, 68, 68);
+  white-space: nowrap;
+  direction: ltr; 
+  text-align: right;
+  background-position: initial initial;
+  background-repeat: initial initial; 
+}
