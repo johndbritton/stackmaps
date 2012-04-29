@@ -14,7 +14,6 @@
 
         // Set up storage
         var sites = [];
-        var users = [];
         var markers = [];
 
         // Set up state
@@ -28,6 +27,9 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        // Set up the infowindow
+        var infowindow = new google.maps.InfoWindow();
 
        function clearOverlays() {
           $.each(markers, function(i, marker) {
@@ -51,7 +53,6 @@
               $('#sites').append('<option value=' + i + '>' + site.name + '</option>');
             });
             $("#sites").trigger("liszt:updated");
-console.log(data);
           }
         });
 
@@ -59,12 +60,11 @@ console.log(data);
           $.ajax({
             url: 'http://api.stackexchange.com/2.0/users',
             type: 'GET',
-            data: 'pagesize=100&order=desc&sort=reputation&page=' + page  + '&site=' + site.api_site_parameter,
+            data: 'pagesize=10&order=desc&sort=reputation&page=' + page  + '&site=' + site.api_site_parameter,
             success: function(data) {
               clearOverlays();
-              users = data.items;
               has_more = data.has_more;
-              $.each(users, function(i, user) {
+              $.each(data.items, function(i, user) {
                 geocodeUser(user);
               });
             }
@@ -78,12 +78,20 @@ console.log(data);
             data: 'flags=j&q=' + user.location,
             success: function(data) {
               var place = data.ResultSet.Results[0];
-              marker = new google.maps.Marker({
+              var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(place.latitude, place.longitude),
                 map: map,
-                title: user.display_name
+                title: user.display_name,
+                user: user,
               });
               markers.push(marker);
+              google.maps.event.addListener(marker, 'click', function(){
+                infowindow.setContent(
+                  '<img src="' + marker.user.profile_image + '" />' +
+                  marker.user.display_name
+                );
+                infowindow.open(map, marker);
+              });
             }
           });
         }

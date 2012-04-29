@@ -1,8 +1,8 @@
 body { margin: 0; padding: 0 }
-#header {  width: 100%; height: 61px; }
+#header {  width: 100%; height: 61px; margin: 10px 0; }
 #details {padding-top: 29px; float: left;}
 #logo { height: 61px; width: 250px; float: left; }
-#share { float: right; padding-top: 20px; }
+#share { position: absolute; top: 10px; right: 10px; }
 #sites { width: 250px; }
 #map {  width: 100%; }
 #credits {
@@ -12,7 +12,7 @@ body { margin: 0; padding: 0 }
   height: 19px;
   -webkit-user-select: none; 
   line-height: 19px; 
-  padding-right: 2px; 
+  padding-right: 10px; 
   padding-left: 50px;
   background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.496094) 50px);
   background-attachment: initial;
