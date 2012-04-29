@@ -3,8 +3,23 @@ body { margin: 0; padding: 0 }
 #details {padding-top: 29px; float: left;}
 #logo { height: 61px; width: 250px; float: left; }
 #share { position: absolute; top: 10px; right: 10px; }
-#sites { width: 250px; }
+#sites { width: 200px; }
+#more { display: none; }
 #map {  width: 100%; }
+
+#user { background-color: #E0EAF1; height: 80px; width: 300px; }
+#avatar { float: left; padding-right: 10px; }
+#name a { color: #07C; }
+#reputation { font-weight: bold; }
+#badges { padding-left: 5px; }
+#badges span { padding-left: 5px; }
+#badges span:before { content: "\2022"; padding-left: 5px; font-weight: bold; }
+#gold:before { color: #ffcc00; }
+#silver:before { color: #c4c4c4; }
+#bronze:before { color: #cc9966; }
+
+#accept-rate { font-weight: bold; color: #508850; }
+
 #credits {
   position: absolute;
   right: 0px;
