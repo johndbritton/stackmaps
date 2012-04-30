@@ -3,7 +3,7 @@ $(document).ready(function(){
   // Resize map with window changes
   $(window).resize(function(){
     $('#map').height(
-      $(window).height() - $('#header').height()
+      $(window).height() - $('#header').outerHeight() -20
     );
   });
   $( window ).resize();
@@ -23,12 +23,20 @@ $(document).ready(function(){
   var mapOptions = {
     zoom: 2,
     center: new google.maps.LatLng(0, 0),
+    panControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
   // Set up the infowindow
   var infowindow = new google.maps.InfoWindow();
+
+  // Handle markers in the same place
+  var oms = new OverlappingMarkerSpiderfier(map);
+  oms.addListener('click', function(marker) {
+    updateInfoWindow(marker);
+    infowindow.open(map, marker);
+  });
 
   // Set up site select
   $('.chzn-select').chosen();
@@ -78,15 +86,13 @@ $(document).ready(function(){
         if(data.ResultSet.Results) {
           var place = data.ResultSet.Results[0];
           var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(place.latitude, place.longitude),
             map: map,
+            position: new google.maps.LatLng(place.latitude, place.longitude),
             title: user.display_name,
             user: user,
           });
           markers.push(marker)
-          google.maps.event.addListener(marker, 'click', function(){
-            updateInfoWindow(marker);
-          });
+          oms.addMarker(marker);
         }
       }
     });
@@ -96,14 +102,14 @@ $(document).ready(function(){
     infowindow.setContent(
       '<div id="user">' +
         '<img id="avatar" src="' + marker.user.profile_image + '"></img>' +
-        '<span id="name"><a href="'+ marker.user.link +'">' + marker.user.display_name + '</a></span><br>' +
+        '<span id="name"><a href="'+ marker.user.link +'" target="_blank">' + marker.user.display_name + '</a></span><br>' +
         '<span id="reputation">' + marker.user.reputation + '</span>' +
         '<span id="badges">' + 
           '<span id="gold">' + marker.user.badge_counts.gold + '</span>' +
           '<span id="silver">' + marker.user.badge_counts.silver + '</span>' +
           '<span id="bronze">' + marker.user.badge_counts.bronze + '</span>' +
         '</span><br>' +
-        '<span id="accept-rate">' + marker.user.accept_rate + '% accept rate</span><br>' +
+        '<span id="accept-rate">' + (marker.user.accept_rate || 'NA') + '% accept rate</span><br>' +
         '<span id="location">' + marker.user.location + '</span>' +
       '</div>'
     );
@@ -118,7 +124,7 @@ $(document).ready(function(){
     success: function(data) {
       sites = data.items;
       $.each(sites, function(i, site) {
-        $('#sites').append('<option value=' + i + '>' + site.name + '</option>');
+        $('#sites').append('<option value="' + i + '" style="background-image: ' + site.favicon_url + ';">' + site.name + '</option>');
       });
       $('#sites').trigger('liszt:updated');
     }
@@ -130,6 +136,7 @@ $(document).ready(function(){
     $('#sites option:selected').each(function () {
       resetMap();
       site = sites[$(this).attr("value")];
+      $('#site-icon').html('<img src="' + site.icon_url + '"></img>');
       getUsers();
     });
   });

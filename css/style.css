@@ -4,11 +4,14 @@ body { margin: 0; padding: 0 }
 #logo { height: 61px; width: 250px; float: left; }
 #share { position: absolute; top: 10px; right: 10px; }
 #sites { width: 200px; }
+#site-icon { position: absolute; bottom: 38px; right: 0px; background-color: rgba(255, 255, 255, 0.496094); }
+#site-icon img { height: 80px; width: 80px; }
 #more { display: none; }
 #map {  width: 100%; }
 
 #user { background-color: #E0EAF1; height: 80px; width: 300px; }
-#avatar { float: left; padding-right: 10px; }
+#user span { line-height: 20px; }
+#avatar { float: left; height: 80px; width:80px; padding-right: 10px; }
 #name a { color: #07C; }
 #reputation { font-weight: bold; }
 #badges { padding-left: 5px; }
