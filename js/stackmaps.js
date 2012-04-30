@@ -20,19 +20,30 @@ $(document).ready(function(){
   var site;
 
   // Set up the map
+  var mti = google.maps.MapTypeId;
   var mapOptions = {
     zoom: 2,
     center: new google.maps.LatLng(0, 0),
     panControl: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.TERRAIN
   };
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
   // Set up the infowindow
   var infowindow = new google.maps.InfoWindow();
+  google.maps.event.addListener(map, "click", function(){
+    infowindow.close();
+  });
 
   // Handle markers in the same place
-  var oms = new OverlappingMarkerSpiderfier(map);
+  var omsOptions = {
+    keepSpiderfied: true,
+    markersWontMove: true,
+  };
+  var oms = new OverlappingMarkerSpiderfier(map, omsOptions);
+  oms.legColors.highlighted[mti.HYBRID] = oms.legColors.highlighted[mti.SATELLITE] = 
+  oms.legColors.highlighted[mti.TERRAIN] = oms.legColors.highlighted[mti.ROADMAP] = '#07C';
+
   oms.addListener('click', function(marker) {
     updateInfoWindow(marker);
     infowindow.open(map, marker);
@@ -43,6 +54,7 @@ $(document).ready(function(){
 
   // Remove markers, reset state
   function resetMap() {
+    oms.clearMarkers();
     $.each(markers, function(i, marker) {
       marker.setMap(null);
       marker = null;
