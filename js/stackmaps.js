@@ -69,6 +69,7 @@ $(document).ready(function(){
     $.ajax({
       url: 'http://api.stackexchange.com/2.0/users',
       type: 'GET',
+      dataType: 'json',
       data: 'order=desc&sort=reputation&page=' + page + '&pagesize=' + PAGE_SIZE + '&site=' + site.api_site_parameter,
       success: function(data) {
         more = data.has_more;
@@ -94,6 +95,7 @@ $(document).ready(function(){
       url: 'http://where.yahooapis.com/geocode',
       type: 'GET',
       data: 'flags=j&q=' + user.location,
+      dataType: 'json',
       success: function(data) {
         if(data.ResultSet.Results) {
           var place = data.ResultSet.Results[0];
@@ -133,6 +135,7 @@ $(document).ready(function(){
     url: 'http://api.stackexchange.com/2.0/sites',
     type: 'GET',
     data: 'pagesize=10000',
+    dataType: 'json',
     success: function(data) {
       sites = data.items;
       $.each(sites, function(i, site) {
