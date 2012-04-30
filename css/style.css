@@ -64,15 +64,9 @@ a { color: #07C; }
   right: 0px;
   bottom: 19px; 
   height: 19px;
-  -webkit-user-select: none; 
   line-height: 19px; 
   padding-right: 10px; 
-  padding-left: 50px;
-  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.496094) 50px);
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: initial; 
+  background-color: rgba(255, 255, 255, 0.496094);
   font-family: Arial, sans-serif;
   font-size: 10px;
   color: rgb(68, 68, 68);
