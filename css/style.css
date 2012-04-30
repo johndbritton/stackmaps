@@ -65,6 +65,7 @@ a { color: #07C; }
   bottom: 19px; 
   height: 19px;
   line-height: 19px; 
+  padding-left: 10px;
   padding-right: 10px; 
   background-color: rgba(255, 255, 255, 0.496094);
   font-family: Arial, sans-serif;
