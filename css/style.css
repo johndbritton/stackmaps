@@ -1,4 +1,5 @@
-body { margin: 0; padding: 0 }
+body { margin: 0; padding: 0; }
+a { color: #07C; }
 #header {  width: 100%; height: 61px; margin: 10px 0; }
 #details {padding-top: 29px; float: left;}
 #logo { height: 61px; width: 250px; float: left; }
@@ -12,7 +13,6 @@ body { margin: 0; padding: 0 }
 #user { background-color: #E0EAF1; height: 80px; width: 300px; }
 #user span { line-height: 20px; }
 #avatar { float: left; height: 80px; width:80px; padding-right: 10px; }
-#name a { color: #07C; }
 #reputation { font-weight: bold; }
 #badges { padding-left: 5px; }
 #badges span { padding-left: 5px; }
@@ -22,6 +22,42 @@ body { margin: 0; padding: 0 }
 #bronze:before { color: #cc9966; }
 
 #accept-rate { font-weight: bold; color: #508850; }
+
+#info {
+     visibility: hidden;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     z-index: 1000;
+}
+
+#info div {
+     width:500px;
+     height: 250px;
+     margin: 100px auto;
+     background-color: #fff;
+     border:1px solid #000;
+     padding:10px;
+}
+
+#info div img {
+  float: left;
+  padding-right: 10px;
+}
+
+#info div h1 {
+  margin: 0;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 30px;
+}
+
+#info div h2 {
+  margin: 0;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 20px;
+}
 
 #credits {
   position: absolute;

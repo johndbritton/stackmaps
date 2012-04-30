@@ -145,5 +145,17 @@ $(document).ready(function(){
   $('#more').click(function() {
     getUsers();
   });
+
+  // Show info window
+  $('#show-info').click(function (event) {
+    event.preventDefault();
+    $('#info').css('visibility','visible');
+  });
+
+  // Hide info window
+  $('#info').click(function (event) {
+     if (event.target !== this) {return;}
+    $('#info').css('visibility','hidden');
+  });
 });
 
