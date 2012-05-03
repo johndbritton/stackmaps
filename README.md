@@ -14,4 +14,4 @@ I wanted to make it easy to browse the [Travel.SE](http://travel.stackexchange.c
 ## Who
 Created by [John Britton](http://johndbritton.com)
 
-Logo built to order by [Chris Kennedy](http://kennedysgarage.com). Marker "[spiderfying](https://github.com/jawj/OverlappingMarkerSpiderfier)" by [George MacKerron](http://mackerron.com/home/). Searchable dropdown using [Chosen](http://harvesthq.github.com/chosen) by [Harvest][http://www.getharvest.com]. Google Maps, jQuery, and GitHub were used too.
+Logo built to order by [Chris Kennedy](http://kennedysgarage.com). Marker "[spiderfying](https://github.com/jawj/OverlappingMarkerSpiderfier)" by [George MacKerron](http://mackerron.com/home/). Searchable dropdown using [Chosen](http://harvesthq.github.com/chosen) by [Harvest](http://www.getharvest.com). Google Maps, jQuery, and GitHub were used too.
