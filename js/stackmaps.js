@@ -92,20 +92,21 @@ $(document).ready(function(){
 
   function geocodeUser(user) {
     $.ajax({
-      url: 'http://where.yahooapis.com/geocode',
+      url: 'http://maps.googleapis.com/maps/api/geocode/json',
       type: 'GET',
-      data: 'flags=j&q=' + user.location,
+      data: 'sensor=false&address=' + user.location,
       dataType: 'json',
       success: function(data) {
-        if(data.ResultSet.Results) {
-          var place = data.ResultSet.Results[0];
+        place = data.results[0];
+        if(place) {
+          var geom = place.geometry;
           var marker = new google.maps.Marker({
             map: map,
-            position: new google.maps.LatLng(place.latitude, place.longitude),
+            position: new google.maps.LatLng(geom.location.lat, geom.location.lng),
             title: user.display_name,
             user: user,
           });
-          markers.push(marker)
+          markers.push(marker);
           oms.addMarker(marker);
         }
       }
